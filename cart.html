@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<head>
+    <title>"Cart</title>
+    <script  src="m.js"></script>
+</head>
+<body>
+<div class="container px-3 my-5 clearfix">
+    <!-- Shopping cart table -->
+    <div class="card">
+      
+        <div class="card-header">
+            <h2><img src="https://cdn-icons-png.flaticon.com/512/2662/2662503.png" class=bagimg>My Cart</h2>
+        </div>
+        <hr>
+        <div class="cart-body">
+            <div class="table-responsive">
+              <table border=1 class="table table-bordered m-0">
+                <thead>
+                  <tr>
+                    <!-- Set columns width -->
+                    <th >Product Name</th>
+                    <th >Price</th>
+                    <th >Quantity</th>
+                    <th>Total</th>
+                    <th><a href="#" class="shop-tooltip float-none text-light" title="" data-original-title="Clear cart"><i class="ino ion-md-trash"></i></a></th>
+                  </tr>
+                </thead>
+                <tbody>
+        
+                  <tr>
+                    <td class="p-4">
+                      <div class="media align-items-center">
+                        <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2596&q=80" height="5%" width="5%" alt="">
+                        <div class="media-body">
+                          <a href="#" class="d-block text-dark">Product 1</a>
+                        </div>
+                      </div>
+                    </td>
+                    <td >$57.55</td>
+                    <td ><button value="-" onclick="decrement1()">-</button><input type="text" class="form-control text-center" value=1 id="number1"><button value="+" onclick="increment1()">+</button></td>
+                    <td >$115.1</td>
+                    <td ><a href="#" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">×</a></td>
+                  </tr>
+        
+                  <tr>
+                    <td class="p-4">
+                      <div class="media align-items-center">
+                        <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="d-block ui-w-40 ui-bordered mr-4" alt="">
+                        <div class="media-body">
+                          <a href="#">Product 2</a>
+                        </div>
+                      </div>
+                    </td>
+                    <td >$1049.00</td>
+                    <td ><button value="-" onclick="decrement2()">-</button><input type="text" class="form-control text-center" value=1 id="number2"><button value="+" onclick="increment2()">+</button></td>
+                    <td >$1049.00</td>
+                    <td><a href="#" title="" data-original-title="Remove">×</a></td>
+                  </tr>
+        
+                  <tr>
+                    <td class="p-4">
+                      <div class="media align-items-center">
+                        <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="d-block ui-w-40 ui-bordered mr-4" alt="">
+                        <div class="media-body">
+                          <a href="#" class="d-block text-dark">Product 3</a>
+                        </div>
+                      </div>
+                    </td>
+                    <td>$20.55</td>
+                    <td ><button value="-" onclick="decrement3()">-</button><input type="text" class="form-control text-center" value=1 id="number3"><button value="+" onclick="increment3()">+</button></td>
+                    <td >$20.55</td>
+                    <td ><a href="#"  title="" data-original-title="Remove">×</a></td>
+                  </tr>
+        
+                </tbody>
+              </table>
+            </div>
+            <!-- / Shopping cart table -->
+        
+            <div>
+              <div >
+                <label >Promocode</label>
+                <input type="text" placeholder="Enter your promocode" class="form-control">
+              </div>
+              <div>
+                <div>
+                  <label>Discount</label>
+                  <div ><strong>$20</strong></div>
+                </div>
+                <div >
+                  <label >Total price</label>
+                  <div ><strong>$1164.65</strong></div>
+                </div>
+              </div>
+            </div>
+        
+            <div>
+              <button type="button" >Back to shopping</button>
+              <button type="button" >Checkout</button>
+            </div>
+        
+          </div>
+      </div>
+  </div>
+</body>
+</html>
