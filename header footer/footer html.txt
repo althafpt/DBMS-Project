@@ -1,0 +1,39 @@
+          <footer class="text-center text-white" style="background-color: #017064">
+  
+            <div class="container">
+
+              <section class="mt-5">
+
+                <div class="row text-center d-flex justify-content-center pt-5 pb-5">
+                  <!-- Grid column -->
+                  <div class="col-md-2">
+                    <h6 class="font-weight-500">
+                      <a href="#!" class="text-white">About us</a>
+                    </h6>
+                  </div>
+
+                  <div class="col-md-2">
+                    <h6 class="font-weight-500">
+                      <a href="#!" class="text-white">Categories</a>
+                    </h6>
+                  </div>
+  
+                  <div class="col-md-2">
+                    <h6 class="font-weight-500">
+                      <a href="#!" class="text-white">Reach out</a>
+                    </h6>
+                  </div>
+
+                  <div class="col-md-2">
+                    <h6 class="font-weight-500">
+                      <a href="#!" class="text-white">Rate us </a>
+                    </h6>
+                  </div>
+
+                </div>
+
+              </section>
+
+           </div>
+
+          </footer>
