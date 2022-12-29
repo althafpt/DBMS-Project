@@ -49,30 +49,36 @@ body{
   {
     opacity: 1;
   }
-.ui-w-40 {
-    width: 40px !important;
-    height: auto;
-}
-
-.card{
-    box-shadow: 0 1px 15px 1px rgba(52,40,104,.08);    
-}
-h2{
+  #cart {
+    width: 500px;
+    margin: 0 auto;
     text-align: center;
-}
-.bagimg
-{
-    padding-top: 5%;
-    width:3.5%;
-}
-.ui-product-color {
-    display: inline-block;
-    overflow: hidden;
-    margin: .144em;
-    width: .875rem;
-    height: .875rem;
-    border-radius: 10rem;
-    -webkit-box-shadow: 0 0 0 1px rgba(0,0,0,0.15) inset;
-    box-shadow: 0 0 0 1px rgba(0,0,0,0.15) inset;
-    vertical-align: middle;
-}
+  }
+
+  #cart table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  #cart th,
+  #cart td {
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+
+  #cart button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+
+  #cart .remove-item {
+    background-color: #f44336;
+  }
+
+  #checkout-button {
+    display: block;
+    margin: 20px auto 0;
+  }

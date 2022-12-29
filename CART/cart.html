@@ -32,104 +32,97 @@
      </div>
    </nav>
  </header>
-<div class="container px-3 my-5 clearfix">
-    <!-- Shopping cart table -->
-    <div class="card1">
-      
-        <div class="card-header">
-            <h2><img src="https://cdn-icons-png.flaticon.com/512/2662/2662503.png" class=bagimg>My Cart</h2>
-        </div>
-        <hr>
-        <div class="cart-body">
-            <div class="table-responsive">
-              <table border=1 class="table table-bordered m-0">
-                <thead>
-                  <tr>
-                    <!-- Set columns width -->
-                    <th >Product Name</th>
-                    <th >Price</th>
-                    <th >Quantity</th>
-                    <th>Total</th>
-                    <th><a href="#" class="shop-tooltip float-none text-light" title="" data-original-title="Clear cart"><i class="ino ion-md-trash"></i></a></th>
-                  </tr>
-                </thead>
-                <tbody>
-        
-                  <tr>
-                    <td class="p-4">
-                      <div class="media align-items-center">
-                        <img src="https://images.unsplash.com/photo-1525966222134-fcfa99b8ae77?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2596&q=80" height="5%" width="5%" alt="">
-                        <div class="media-body">
-                          <a href="#" class="d-block text-dark">Product 1</a>
-                        </div>
-                      </div>
-                    </td>
-                    <td >$57.55</td>
-                    <td ><button value="-" onclick="decrement1()">-</button><input type="text" class="form-control text-center" value=1 id="number1"><button value="+" onclick="increment1()">+</button></td>
-                    <td >$115.1</td>
-                    <td ><a href="#" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove">×</a></td>
-                  </tr>
-        
-                  <tr>
-                    <td class="p-4">
-                      <div class="media align-items-center">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar6.png" class="d-block ui-w-40 ui-bordered mr-4" alt="">
-                        <div class="media-body">
-                          <a href="#">Product 2</a>
-                        </div>
-                      </div>
-                    </td>
-                    <td >$1049.00</td>
-                    <td ><button value="-" onclick="decrement2()">-</button><input type="text" class="form-control text-center" value=1 id="number2"><button value="+" onclick="increment2()">+</button></td>
-                    <td >$1049.00</td>
-                    <td><a href="#" title="" data-original-title="Remove">×</a></td>
-                  </tr>
-        
-                  <tr>
-                    <td class="p-4">
-                      <div class="media align-items-center">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="d-block ui-w-40 ui-bordered mr-4" alt="">
-                        <div class="media-body">
-                          <a href="#" class="d-block text-dark">Product 3</a>
-                        </div>
-                      </div>
-                    </td>
-                    <td>$20.55</td>
-                    <td ><button value="-" onclick="decrement3()">-</button><input type="text" class="form-control text-center" value=1 id="number3"><button value="+" onclick="increment3()">+</button></td>
-                    <td >$20.55</td>
-                    <td ><a href="#"  title="" data-original-title="Remove">×</a></td>
-                  </tr>
-        
-                </tbody>
-              </table>
-            </div>
-            <!-- / Shopping cart table -->
-        
-            <div>
-              <div >
-                <label >Promocode</label>
-                <input type="text" placeholder="Enter your promocode" class="form-control">
-              </div>
-              <div>
-                <div>
-                  <label>Discount</label>
-                  <div ><strong>$20</strong></div>
-                </div>
-                <div >
-                  <label >Total price</label>
-                  <div ><strong>$1164.65</strong></div>
-                </div>
-              </div>
-            </div>
-        
-            <div>
-              <button type="button" >Back to shopping</button>
-              <button type="button" >Checkout</button>
-            </div>
-        
-          </div>
-      </div>
-  </div>
+<div id="cart">
+  <h2>My Cart</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Total</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="cart-items">
+      <tr>
+        <td class="item-name">Product 1</td>
+        <td>
+          <input type="number" value="1" class="quantity" data-price="10.00">
+        </td>
+        <td class="price">$10.00</td>
+        <td class="item-total">$10.00</td>
+        <td><button class="remove-item">Remove</button></td>
+      </tr>
+      <tr>
+        <td class="item-name">Product 2</td>
+        <td>
+          <input type="number" value="1" class="quantity" data-price="20.00">
+        </td>
+        <td class="price">$20.00</td>
+        <td class="item-total">$20.00</td>
+        <td><button class="remove-item">Remove</button></td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3">Total:</td>
+        <td id="cart-total">$30.00</td>
+      </tr>
+    </tfoot>
+  </table>
+  <button id="checkout-button">Checkout</button>
+</div>
+
+
+
+<script>
+  const quantityInputs = document.querySelectorAll('.quantity');
+const removeButtons = document.querySelectorAll('.remove-item');
+const checkoutButton = document.querySelector('#checkout-button');
+const cartTotalElement = document.querySelector('#cart-total');
+const cartItems = document.querySelector('#cart-items');
+
+quantityInputs.forEach(input => {
+  input.addEventListener('change', updateItemTotal);
+});
+
+removeButtons.forEach(button => {
+  button.addEventListener('click', removeItem);
+});
+
+checkoutButton.addEventListener('click', checkout);
+
+function updateItemTotal(event) {
+  const input = event.currentTarget;
+  const tr = input.parentElement.parentElement;
+  const price = parseFloat(input.getAttribute('data-price'));
+  const quantity = parseInt(input.value);
+  const itemTotal = price * quantity;
+  tr.querySelector('.item-total').textContent = '$' + itemTotal.toFixed(2);
+  updateTotal();
+}
+
+function removeItem(event) {
+  const button = event.currentTarget;
+  button.parentElement.parentElement.remove();
+  updateTotal();
+}
+
+function updateTotal() {
+  let total = 0;
+
+  cartItems.querySelectorAll('.item-total').forEach(element => {
+    total += parseFloat(element.textContent.substring(1));
+  });
+
+  cartTotalElement.textContent = '$' + total.toFixed(2);
+}
+
+function checkout() {
+  alert('Thank you for your purchase!');
+}
+</script>
   <footer class="text-center text-white" style="background-color: #017064">
   
     <div class="container">
