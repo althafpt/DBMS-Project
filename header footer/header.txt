@@ -1,3 +1,5 @@
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
  <header class="top-part">
     <div class="logo"> 
       <img class="logo" src="images/logo.png" height=100px width="237px"   >
@@ -24,3 +26,48 @@
      </div>
    </nav>
  </header>
+
+
+CSS:
+	body
+{
+    margin: 0;
+}
+.logo
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+@media screen and (min-width:777px){
+    .nav-link {
+      padding:18px 0;
+      min-width:120px;
+    }
+    .navbar {
+      padding: 0
+    }
+  }
+.offer
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.header{
+    position:sticky ;
+    top: 0; 
+}
+li{
+  list-style-type: none;
+}
+.nav-link{
+  color: #383838;
+  opacity: 0.5;
+  transition: 0.5s;
+  font-size: 150%;
+} 
+.nav-link:hover
+{
+  opacity: 1;
+}
