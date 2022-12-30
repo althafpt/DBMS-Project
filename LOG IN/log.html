@@ -2,10 +2,10 @@
 <html>
   <head>
     <title>Log  In</title>
-      <script  src="login.js"></script>
-      <link rel="stylesheet" href="logi.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script  src="login.js"></script>
+    <link rel="stylesheet" href="logi.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
     <header class="top-part">
@@ -38,8 +38,8 @@
 
 
     <div class="overlay">
-      <form>
-        <div class="con">
+      <form id="form1">
+        <div class="con1">
           <header class="head-form">
             <h2>Log In</h2>
           </header>
@@ -60,15 +60,30 @@
             <br><br>
             <button class="log-in" id="login"> Log In </button>
           </div>
-          <div class="other">
-            <button class="btn submits sign-up" id="signup" >Sign Up 
-              <i class="fa fa-user-plus" aria-hidden="true"></i>
-            </button>
-          </div>
+        </div>
+      </form>
+      <form id="form2">
+        <div class="con2">
+          <a>If you don't have an account,then</a>
+          <a href="#">Sign Up 
+            <i class="fa fa-user-plus" aria-hidden="true"></i>
+          </button>
         </div>
       </form>
     </div>
-
+    
+    <script>
+      var pwShown = 0;
+      document.getElementById("eye").addEventListener("click", function () {
+      if (pwShown == 0) {
+          pwShown = 1;
+          show();
+      } else {
+          pwShown = 0;
+          hide();
+      }
+      }, false);
+    </script>
 
       
     <footer class="text-center text-white" style="background-color: #017064">

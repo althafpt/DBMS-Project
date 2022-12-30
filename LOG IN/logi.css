@@ -7,19 +7,19 @@
         background-repeat: no-repeat;
     }
     
-    form {
+    #form1 {
         width: 450px;
-        min-height: 500px;
         height: auto;
         border-radius: 5px;
-        margin: 10% auto;
+        margin: 2% auto;
         box-shadow: 0 9px 50px #D9F9E3;
         padding: 3%;
         background-color: #7dc794;
     }
     
-    form .con {
-      padding-top: 30px;
+    .con1 {
+      padding-top: 15px;
+      padding-bottom:15px;
       display: flex;
       flex-direction: column;
       gap: 10px;
@@ -27,7 +27,15 @@
       align-items: center;
     
     }
-    form.con.head-form {
+    .con2 {
+      display: flex;
+      gap:.5em;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    
+    }
+    .con1.head-form {
         margin: 2% auto 10% auto;
         text-align: center;
     }
@@ -41,7 +49,7 @@
     .input-item {
         background: #fff;
         color: #4D4D4D;
-        padding: 12.8px 0px 15.8px 9px;
+        padding: 12.7px 0px 15.8px 9px;
         border-radius: 5px 0px 0px 5px;
     }
     /*for profile and key text*/
@@ -94,10 +102,6 @@
         transition: all 0.2s linear;
         margin: 7% auto;
         letter-spacing: 0.05em;
-    }
-    
-    .submits {
-        margin-top: 15%;
     }
     
     button:hover {
