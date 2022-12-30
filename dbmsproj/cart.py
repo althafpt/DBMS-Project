@@ -9,5 +9,5 @@ def home():
 def cart():
     return render_template('cart.html')
 @app.route('/login')
-def cart():
+def login():
     return render_template('Login.html')
