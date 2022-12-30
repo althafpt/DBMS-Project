@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>
+        Home Page
+    </title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark" >
+        <div class="logoonly"></div>
+            <img src="https://cdn-icons-png.flaticon.com/512/3556/3556759.png"  width="50em" height="50em" alt="LOGO">
+            <a class="navbar-brand" href="#" style="text-align: center;">AZANG</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+            <span class="navbar-toggler-icon">
+            </span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto" >
+                <li class="nav-item active">
+                    <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="cart">Cart</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="login">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="register">Register</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div id="cart">
+        <h2>My Cart</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>Total</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="cart-items">
+            <tr>
+              <td class="item-name">Product 1</td>
+              <td>
+                <input type="number" value="1" class="quantity" data-price="10.00">
+              </td>
+              <td class="price">$10.00</td>
+              <td class="item-total">$10.00</td>
+              <td><button class="remove-item">Remove</button></td>
+            </tr>
+            <tr>
+              <td class="item-name">Product 2</td>
+              <td>
+                <input type="number" value="1" class="quantity" data-price="20.00">
+              </td>
+              <td class="price">$20.00</td>
+              <td class="item-total">$20.00</td>
+              <td><button class="remove-item">Remove</button></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="3">Total:</td>
+              <td id="cart-total">$30.00</td>
+            </tr>
+          </tfoot>
+        </table>
+        <button id="checkout-button">Checkout</button>
+      </div>
+      
+      
+      
+      <script>
+        const quantityInputs = document.querySelectorAll('.quantity');
+      const removeButtons = document.querySelectorAll('.remove-item');
+      const checkoutButton = document.querySelector('#checkout-button');
+      const cartTotalElement = document.querySelector('#cart-total');
+      const cartItems = document.querySelector('#cart-items');
+      
+      quantityInputs.forEach(input => {
+        input.addEventListener('change', updateItemTotal);
+      });
+      
+      removeButtons.forEach(button => {
+        button.addEventListener('click', removeItem);
+      });
+      
+      checkoutButton.addEventListener('click', checkout);
+      
+      function updateItemTotal(event) {
+        const input = event.currentTarget;
+        const tr = input.parentElement.parentElement;
+        const price = parseFloat(input.getAttribute('data-price'));
+        const quantity = parseInt(input.value);
+        const itemTotal = price * quantity;
+        tr.querySelector('.item-total').textContent = '$' + itemTotal.toFixed(2);
+        updateTotal();
+      }
+      
+      function removeItem(event) {
+        const button = event.currentTarget;
+        button.parentElement.parentElement.remove();
+        updateTotal();
+      }
+      
+      function updateTotal() {
+        let total = 0;
+      
+        cartItems.querySelectorAll('.item-total').forEach(element => {
+          total += parseFloat(element.textContent.substring(1));
+        });
+      
+        cartTotalElement.textContent = '$' + total.toFixed(2);
+      }
+      
+      function checkout() {
+        alert('Thank you for your purchase!');
+      }
+      </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+  <style>
+    body
+    {
+        background-color: #CFFDE1;
+        color: black;
+    }
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body
+  {
+      margin: 0;
+  }
+  .logo
+  {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+  }
+  @media screen and (min-width:777px){
+      .nav-link {
+        padding:18px 0;
+        min-width:120px;
+      }
+      .navbar {
+        padding: 0
+      }
+    }
+  .offer
+  {
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+  }
+  .header{
+      position:sticky ;
+      top: 0; 
+  }
+  li{
+    list-style-type: none;
+  }
+  .nav-link{
+    color: #383838;
+    opacity: 0.5;
+    transition: 0.5s;
+    font-size: 150%;
+  } 
+  .nav-link:hover
+  {
+    opacity: 1;
+  }
+  #cart {
+    width: 500px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  #cart table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  #cart th,
+  #cart td {
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+
+  #cart button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+  }
+
+  #cart .remove-item {
+    background-color: #f44336;
+  }
+
+  #checkout-button {
+    display: block;
+    margin: 20px auto 0;
+  }
+  </style>
+</html>
