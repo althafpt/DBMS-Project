@@ -8,3 +8,6 @@ def home():
 @app.route('/cart')
 def cart():
     return render_template('cart.html')
+@app.route('/login')
+def cart():
+    return render_template('Login.html')
