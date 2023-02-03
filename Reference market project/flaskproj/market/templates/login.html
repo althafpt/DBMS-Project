@@ -1,0 +1,38 @@
+{% extends 'baselayout.html' %}
+
+{% block title %}
+    login page
+{% endblock %}
+
+{% block content %}
+   <body class="text-center">
+        <div class="container">
+            <form method="POST" class="form sign-in" style="color: white;">
+                {{ form.hidden_tag() }}
+                <h1 class="h3 mb-3 font-weight-normal"> Enter your credentials </h1>
+                <br>
+                {{ form.username.label() }}
+                {{ form.username(class="form-control", placeholder="username")}}
+                <br>
+                {{ form.password.label() }}
+                {{ form.password(class="form-control", placeholder="password")}}
+                <br>
+                {{ form.submit(class="btn btn-lg btn-block btn-primary")}}
+                <br><br>    
+                <div class="checkbox mb-3">
+                    <h6>Don't have an account?</h6>
+                    <a class="btn btn-sm btn-secondary" href="{{ url_for('registerpage')}}">Create a new account</a>
+                </div>
+
+                
+
+            </form>
+        </div>
+   </body>
+{% endblock %}
+
+
+<!-- in forms we have to generate secret keys in order to make the forms secure as we are getting actual information from the client which has to be stored safely
+it can be created using --python os.urandom('number of bytes').hex() in command prompt-- -->
+
+<!-- d887994e1cefece410b3a881 is the secret key in this -->
