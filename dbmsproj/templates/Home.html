@@ -1,61 +1,224 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>
-        Home Page
-    </title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <title>Hello, world!</title>
-  </head>
-  <body>
-    
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark" >
-        <div class="logoonly"></div>
-            <img src="https://cdn-icons-png.flaticon.com/512/3556/3556759.png"  width="50em" height="50em" alt="LOGO">
-            <a class="navbar-brand" href="#" style="text-align: center;">AZANG</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
-            <span class="navbar-toggler-icon">
-            </span>
-            </button>
+{% extends 'base.html' %}
+{% block title %}
+    Azang
+{% endblock %}
+{% block content %}
+        <div class="offer-template">
+            <img class="offer" src="{{url_for('static',filename='@azangstore.jpg')}}" alt="offer template">
         </div>
-            <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav mr-auto" >
-                <li class="nav-item active">
-                    <a class="nav-link" href="home">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="cart">Cart</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="login">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="register">Register</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <h1>Hello, world!</h1>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-  </body>
-  <style>
-    body
+        <h3 class="dofd-head">DEALS OF THE DAY</h3>
+        <!--display items in store-->
+        <section class="products">
+            <div class="product-container">
+              <div class="product-card">
+                  <div class="product-image">
+                      <img src="{{url_for('static',filename='card2.jpg')}}" alt="" class="product-thumb" height="350px" width="220px">
+                      <button class="addtocartbtn"> Add To Cart </button>
+                  </div>
+                  <div class="shoe-specs">
+                    <span class="disprice">$59</span><span class="orgprice">$99</span>
+                    <h2 class="brand">Adidas</h2>
+                    <p class="spec">Running Shoes</p>
+                    
+                  </div>
+              </div>
+            </div>
+            <div class="product-container">
+              <div class="product-card">
+                  <div class="product-image">
+                      <img src="{{url_for('static',filename='card4.jpg')}}" alt="" class="product-thumb" height="350px" width="220px">
+                      <button class="addtocartbtn"> Add To Cart </button>
+                  </div>
+                  <div class="shoe-specs">
+                    <span class="disprice">$69</span><span class="orgprice">$129</span>
+                    <h2 class="brand">Reebok</h2>
+                    <p class="spec">Running Shoes</p>
+                    
+                  </div>
+              </div>
+            </div>
+            <div class="product-container">
+              <div class="product-card">
+                  <div class="product-image">
+                      <img src="{{url_for('static',filename='card5.jpg')}}" alt="" class="product-thumb" height="350px" width="220px">
+                      <button class="addtocartbtn"> Add To Cart </button>
+                  </div>
+                  <div class="shoe-specs">
+                    <span class="disprice">$89</span><span class="orgprice">$149</span>
+                    <h2 class="brand">Nike</h2>
+                    <p class="spec">Running Shoes</p>
+                    
+                  </div>
+              </div>
+            </div>
+            <div class="product-container">
+              <div class="product-card">
+                  <div class="product-image">
+                      <img src="{{url_for('static',filename='card6.jpg')}}" alt="" class="product-thumb" height="350px" width="220px">
+                      <button class="addtocartbtn"> Add To Cart </button>
+                  </div>
+                  <div class="shoe-specs">
+                    <span class="disprice">$39</span><span class="orgprice">$99</span>
+                    <h2 class="brand">WestSide</h2>
+                    <p class="spec">Canvas Shoes</p>
+                    
+                  </div>
+              </div>
+            </div>
+            <div class="product-container">
+              <div class="product-card">
+                  <div class="product-image">
+                      <img src="{{url_for('static',filename='card7.jpg')}}" alt="" class="product-thumb" height="350px" width="220px">
+                      <button class="addtocartbtn"> Add To Cart </button>
+                  </div>
+                  <div class="shoe-specs">
+                    <span class="disprice">$89</span><span class="orgprice">$139</span>
+                    <h2 class="brand">Vans</h2>
+                    <p class="spec">Casual Shoes</p>
+                    
+                  </div>
+              </div>
+            </div>           
+        </section>
+<style>
+.top-part{
+position:sticky ;
+top: 0; 
+}
+.logo
     {
-        background-color: #CFFDE1;
-        color: black;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #fff;
     }
-  </style>
-</html>
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body
+{
+    margin: 0;
+}
+@media screen and (min-width:777px){
+    .nav-link {
+      padding:18px 0;
+      min-width:120px;
+    }
+    .navbar {
+      padding: 0
+    }
+  }
+.offer
+{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+li{
+  list-style-type: none;
+}
+.nav-link{
+  color: #383838;
+  opacity: 0.5;
+  transition: 0.5s;
+  font-size: 150%;
+} 
+.nav-link:hover
+{
+  opacity: 1;
+}
+.dofd-head{
+  display: flex;
+  justify-content: center;
+  margin: 20px 0px;
+  font-weight: 700;
+  color:red;
+}
+.product-container
+{
+  /* padding-right:10vw; */
+  /* display: inline-block; */
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth; 
+}
+.product-container::-webkit-scrollbar{
+  display: none;
+}
+.products{
+  padding: 0 10vw;
+  display: flex;
+  justify-content: center;
+}
+.product-card{
+  width: 196px;
+  height: 600px; 
+  margin: 0px 20px;
+}
+.product-image{
+  position: relative;
+  width: 196px;
+  height: 350px; 
+  overflow: hidden;
+  
+}
+.product-thumb{
+  width:196px;
+  height:350px;
+  object-fit: cover;
+}
+.addtocartbtn{
+  position: absolute;
+  transform: translateX(-50%);
+  text-transform: capitalize;
+  border: 5px;
+  outline: 2px;
+  color: black;
+  bottom: 5px;
+  left: 50%;
+  padding: 10px;
+  width: 90%;
+  border-radius: 5px;
+  transition: 0.5s;
+  cursor: pointer;
+  opacity: 0;
+}
+.product-card:hover .addtocartbtn{
+  opacity:1;
+}
+.addtocartbtn:hover{
+  background-color: black;
+  color: white;
+
+}
+.shoe-specs{
+  padding-top:10px;
+  height: 100px;
+  width: 100%;
+}
+.brand{
+  text-transform: capitalize;
+  
+}
+.spec{
+  width: 100%;
+  height: 20px;
+  line-height: 20px;
+  overflow: hidden;
+  opacity: 0.5;
+  text-transform: capitalize;
+  padding-bottom: 30px;
+}
+.disprice{
+  font-weight: 700;
+  font-size: 20px;
+}
+.orgprice{
+  text-decoration: line-through;
+  opacity: 0.5;
+  margin-left: 10px;
+}
+</style>
+{% endblock %}

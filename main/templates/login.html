@@ -1,0 +1,208 @@
+{% extends 'base.html' %}
+{% block title %}
+    Login
+{% endblock %}
+{% block content %}
+    <div class="overlay">
+      <form id="form1">
+        <div class="con1">
+          <header class="head-form">
+            <h2>Log In</h2>
+          </header>
+          <br>
+          <div class="field-set">     
+            <span class="input-item">
+              <i class="fa fa-user-circle"></i>
+            </span>
+            <input class="form-input" id="txt-input" type="text" placeholder="@user" required>
+            <br>  
+            <span class="input-item">
+              <i class="fa fa-key"></i>
+            </span>
+            <input class="form-input" type="password" placeholder="password" id="pwd"  name="password" required>
+            <span>
+              <i class="fa fa-eye" aria-hidden="true"  type="button" id="eye"></i>
+            </span>
+            <br><br>
+            <button class="log-in" id="login"> Log In </button>
+          </div>
+        </div>
+      </form>
+      <form id="form2">
+        <div class="con2">
+          <a>If you don't have an account,then</a>
+          <a href="reg">Sign Up 
+            <i class="fa fa-user-plus" aria-hidden="true"></i>
+          </button>
+        </div>
+      </form>
+    </div>
+    
+    
+<style>        
+	  body {
+        margin: 0;    
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+    }
+    
+    .log-in{
+        background-color: #029f14;
+        color: #fff;
+        border-radius: 3%;
+    }
+
+    #form1 {
+        width: 450px;
+        height: auto;
+        border-radius: 5px;
+        margin: 1.5% auto;
+        box-shadow: 0 9px 50px #D9F9E3;
+        padding: 3%;
+        background-color: #7dc794;
+    }
+    
+    .con1 {
+      padding-top: 15px;
+      padding-bottom:15px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+    
+    }
+    .con2 {
+      display: flex;
+      gap:.5em;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    
+    }
+    .con1.head-form {
+        margin: 2% auto 10% auto;
+        text-align: center;
+    }
+    
+    h2 {
+        font-size: 250%;
+        color: #000;
+    }
+    
+    /*for profile and key icon*/
+    .input-item {
+        background: #fff;
+        color: #4D4D4D;
+        padding: 12.7px 0px 15.8px 9px;
+        border-radius: 5px 0px 0px 5px;
+    }
+    /*for profile and key text*/
+    input[class="form-input"]{
+        width: 245px;
+        height: 50px;
+        margin-top: 2%;
+        padding: 15px;
+        font-size: 16px;
+        font-family: 'Abel', sans-serif;
+        color: #000000;
+        outline: none;
+        border: none;  
+        border-radius: 0px 5px 5px 0px;
+        transition: 0.2s linear;
+    }
+    
+    #eye {
+        background: #fff;
+        color: #4D4D4D;
+        margin: 5.9px 0 0 0;
+        margin-left: -20px;
+        padding: 15px 7px 19px 8px;
+        border-radius: 0px 5px 5px 0px;  
+        float: right;
+        right: 1%;
+        top: -.2%;
+        z-index: 5;    
+        cursor: pointer;
+    }
+    /* below  width adjustment to compensate for eye icon in user text*/
+    input[id="txt-input"] {width: 270px;}
+    /*for slight movement of fields to left on selection*/
+    input:focus {
+        transform: translateX(-2px);
+    }
+    
+    button {
+        display: inline-block;
+        color: #4D4D4D;
+        width: 300px;
+        height: 50px;
+        padding: 0 20px;
+        background: #fff;
+        border-radius: 5px;
+        outline: none;
+        border: none;
+        cursor: pointer;
+        text-align: center;
+        transition: all 0.2s linear;
+        margin: 7% auto;
+        letter-spacing: 0.05em;
+    }
+    
+    button:hover {
+        transform: translatey(3px);
+        box-shadow: none;
+        animation: ani9 0.4s ease-in-out infinite alternate;
+    }
+    
+    @keyframes ani9 {
+        0% {
+            transform: translateY(3px);
+        }
+        100% {
+            transform: translateY(5px);
+        }
+    }
+    /*////////////////////////*/
+    
+    .logo
+    {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        background-color: #fff;
+    }
+    @media screen and (min-width:777px){
+        .nav-link {
+          padding:18px 0;
+          min-width:120px;
+        }
+        .navbar {
+          padding: 0
+        }
+      }
+    .offer
+    {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .top-part{
+        position:sticky ;
+        top: 0; 
+    }
+    li{
+      list-style-type: none;
+    }
+    .nav-link{
+      color: #383838;
+      opacity: 0.5;
+      transition: 0.5s;
+      font-size: 150%;
+    } 
+    .nav-link:hover
+    {
+      opacity: 1;
+    }
+    </style>
+{% endblock %}    
