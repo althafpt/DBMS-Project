@@ -9,6 +9,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">   
+        {% block title_changes %}
+        {% endblock %}
     </head>
     <body>
         <header class="top-part">
@@ -67,46 +69,5 @@
                 </section>
             </div>
         </footer>
-        <script>
-            /*pass1*/
-            var pwShown = 0;
-            document.getElementById("eye").addEventListener("click", function () {
-            if (pwShown == 0) {
-                pwShown = 1;
-                show();
-            } else {
-                pwShown = 0;
-                hide();
-            }
-            }, false);
-            function show() {
-              var p = document.getElementById('pwd');
-              p.setAttribute('type', 'text');
-            }
-            function hide() {
-              var p = document.getElementById('pwd');
-              p.setAttribute('type', 'password');
-            }
-
-            /*pass2*/
-            var cpwShown = 0;
-            document.getElementById("ceye").addEventListener("click", function () {
-            if (cpwShown == 0) {
-                cpwShown = 1;
-                cshow();
-            } else {
-                cpwShown = 0;
-                chide();
-            }
-            }, false);
-            function cshow() {
-              var cp = document.getElementById('cpwd');
-              cp.setAttribute('type', 'text');
-            }
-            function chide() {
-              var cp = document.getElementById('cpwd');
-              cp.setAttribute('type', 'password');
-            }
-          </script>
     </body>
 </html>
