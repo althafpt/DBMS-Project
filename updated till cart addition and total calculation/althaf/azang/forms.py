@@ -25,3 +25,6 @@ class LoginForm(FlaskForm):
 
 class addtocartForm(FlaskForm):
     submit=SubmitField(label='Add To Cart!')
+
+class checkoutform(FlaskForm):
+    submit=SubmitField(label='checkout')

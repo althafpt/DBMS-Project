@@ -158,6 +158,7 @@
                 <div class="product-card">
                     <div class="product-image">
                         <img src="{{item.url}}" alt="image of {{item.name}}" class="product-thumb" height="350px" width="220px">
+                        {{form.hidden_tag()}}
                         <button class="addtocartbtn" data-toggle="modal" data-target="#Modal-purchase--{{item.id}}"> Add To Cart </button>
                     </div>
                     <div class="shoe-specs">

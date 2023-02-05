@@ -61,8 +61,6 @@ class Product(db.Model):
     url = db.Column(db.String(1024), unique=True)
     users = db.relationship(
         'User', secondary='cart_product', back_populates='products')
-    confirmed_orders = db.relationship(
-        'ConfirmedOrders', back_populates='product')
     def __repr__(self):
         return f'Product {self.name}'
 
@@ -70,7 +68,4 @@ class Product(db.Model):
 class ConfirmedOrders(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    product_id = db.Column(db.Integer, db.ForeignKey(
-        'product.id'), nullable=False)
     user = db.relationship('User', back_populates='confirmed_orders')
-    product = db.relationship('Product', back_populates='confirmed_orders')

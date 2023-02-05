@@ -1,15 +1,15 @@
 <style>
     .modal-content{
-        background-color: white;
+        background-color:   white;
     }
 </style>
-<div class="modal fade" id="Modal-purchase--{{ item.id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
+<div class="modal fade" id="Modal-confirmorder" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="ModalLabel">
                     <!--title-->
-                    {{ item.name }}
+                    Order Confirmation
                 </h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="close">
                     <span aria-hidden="true">x</span>
@@ -21,9 +21,7 @@
                         <form method="POST">
                             {{ form.hidden_tag() }}
 
-                            <h4 class="text-center">Are you sure you wish to add {{item.name}} to the cart?</h4>
-                            <br>
-                            <input id="item_in_cart" name="item_in_cart" type="hidden" value="{{ item.name }}">    <!--obtained from terminal by --print(purchase_form['submit'])---->  
+                            <input id="item_in_cart" name="item_in_cart" type="hidden" value="">    <!--obtained from terminal by --print(purchase_form['submit'])---->  
                             {{ form.submit(class="btn btn-outline-success btn-block")}}
                         </form>
                 </div>

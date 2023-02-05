@@ -1,13 +1,15 @@
 from azang import app,db
 from flask import render_template,redirect,url_for,request,flash,get_flashed_messages
-from azang.models import User,Product,Cart
-from azang.forms import RegisterForm,LoginForm,addtocartForm
+from azang.models import User,Product,Cart,ConfirmedOrders
+from azang.forms import RegisterForm,LoginForm,addtocartForm,checkoutform
 from flask_login import login_user, logout_user, login_required, current_user
+import random
 @app.route('/')
-@app.route('/home',methods=['GET','POST'])
+@app.route('/home',methods=['POST','GET'])
 def home():
-    addtocartform = addtocartForm()
-    if(request.method == "POST"):
+    form = addtocartForm()
+    items=Product.query.all()
+    if request.method == "POST":
         item_in_cart = request.form.get('item_in_cart')
         p_item_object = Product.query.filter_by(name=item_in_cart).first()
         if p_item_object:
@@ -22,10 +24,9 @@ def home():
         
             
 
-    if request.method == "GET":
-        items=Product.query.all()
         
-        return render_template('home.html',items=items,addtocartform=addtocartform)
+        
+    return render_template('home.html',items=items,form=form)
 
 
 @app.route('/cart')
@@ -75,6 +76,18 @@ def logout():
     flash(f"Successfully logged out!",category="success")
     return redirect(url_for("home"))
         
-@app.route('/checkout')  
+@app.route('/checkout',methods=['GET','POST'])  
 def checkout():
-   return redirect(url_for("checkout"))
+    
+    form=checkoutform()  #instance of the forms
+    if form.validate_on_submit: #checks if user has clicked on submit and this happens when all validators are satisfied
+        neworder = ConfirmedOrders(id=random.randint(100000,999999), user_id=current_user.id) 
+        db.session.add(neworder)
+        db.session.commit()
+        flash(f"Successfully Placed Order!",category="success")
+        return redirect(url_for("home"))
+        
+    return render_template("checkout.html",form=form)
+
+
+    
