@@ -5,6 +5,15 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///store.db'
 db = SQLAlchemy(app)
 app.app_context().push()
 
+cart_product = db.Table('cart_product',
+                        db.Column('cart_id', db.Integer, db.ForeignKey(
+                            'cart.id'), primary_key=True),
+                        db.Column('product_id', db.Integer, db.ForeignKey(
+                            'product.id'), primary_key=True),
+                        db.Column('user_id', db.Integer, db.ForeignKey(
+                            'user.id'), primary_key=True),
+                        )
+
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -13,22 +22,17 @@ class User(db.Model):
     email = db.Column(db.String(40), nullable=False, unique=True)
     password = db.Column(db.String(30),
                          nullable=False, unique=True)
+    product_id = db.Column(db.Integer, db.ForeignKey(
+        'product.id'))
     cart = db.relationship('Cart', uselist=False,
                            back_populates='user', cascade='all, delete-orphan')
     products = db.relationship(
-        'Product', secondary='cart_product', back_populates='users')
-    confirmed_orders = db.relationship('ConfirmedOrder', back_populates='user')
+        'Product', back_populates='users')
+    confirmed_orders = db.relationship(
+        'ConfirmedOrders', back_populates='user')
 
     def __repr__(self):
         return f'User {self.user_name}'
-
-
-cart_product = db.Table('cart_product',
-                        db.Column('cart_id', db.Integer, db.ForeignKey(
-                            'cart.id'), primary_key=True),
-                        db.Column('product_id', db.Integer, db.ForeignKey(
-                            'product.id'), primary_key=True)
-                        )
 
 
 class Cart(db.Model):
@@ -42,10 +46,11 @@ class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), nullable=False, unique=True)
     price = db.Column(db.Integer, nullable=False)
+    url = db.Column(db.String(1024), unique=True)
     users = db.relationship(
         'User', secondary='cart_product', back_populates='products')
     confirmed_orders = db.relationship(
-        'ConfirmedOrder', back_populates='product')
+        'ConfirmedOrders', back_populates='product')
 
     def __repr__(self):
         return f'Product {self.name}'
