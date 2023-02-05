@@ -4,34 +4,37 @@
 {% endblock %}
 {% block content %}
     <div class="overlay">
-      <form id="form1">
+      <form id="form1" method="POST">
+        {{ form.hidden_tag() }}
         <div class="con1">
           <header class="head-form">
             <h2>Log In</h2>
           </header>
           <br>
           <div class="field-set">     
-            <span class="input-item">
+            <!-- <span class="input-item">
               <i class="fa fa-user-circle"></i>
-            </span>
-            <input class="form-input" id="txt-input" type="text" placeholder="@user" required>
+            </span> -->
+            {{ form.username.label() }}
+            {{ form.username(class="form-control", placeholder="username")}}
             <br>  
-            <span class="input-item">
+            <!-- <span class="input-item">
               <i class="fa fa-key"></i>
-            </span>
-            <input class="form-input" type="password" placeholder="password" id="pwd"  name="password" required>
-            <span>
+            </span> -->
+            {{ form.password.label() }}
+            {{ form.password(class="form-control", placeholder="password")}}
+            <!-- <span>
               <i class="fa fa-eye" aria-hidden="true"  type="button" id="eye"></i>
-            </span>
+            </span> -->
             <br><br>
-            <button class="log-in" id="login"> Log In </button>
+            {{ form.submit(class="btn btn-lg btn-block btn-primary")}}
           </div>
         </div>
       </form>
       <form id="form2">
         <div class="con2">
           <a>If you don't have an account,then</a>
-          <a href="reg">Sign Up 
+          <a href="{{url_for('reg')}}">Sign Up 
             <i class="fa fa-user-plus" aria-hidden="true"></i>
           </button>
         </div>

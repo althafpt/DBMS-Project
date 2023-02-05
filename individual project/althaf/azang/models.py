@@ -1,4 +1,10 @@
-from azang import db
+from azang import db, login_manager
+from flask_login import UserMixin  #contains get_id,isauntheticated and other methods used to verify if the user has logged in or not
+@login_manager.user_loader
+def load_user(id):
+    return User.query.get(int(id))
+
+
 cart_product = db.Table('cart_product',
                         db.Column('cart_id', db.Integer, db.ForeignKey(
                             'cart.id'), primary_key=True),
@@ -9,7 +15,7 @@ cart_product = db.Table('cart_product',
                         )
 
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     user_name = db.Column(db.String(30), nullable=False)
     phone = db.Column(db.String(15), nullable=False, unique=True)
@@ -27,6 +33,14 @@ class User(db.Model):
 
     def __repr__(self):
         return f'User {self.user_name}'
+
+
+
+    def check_password_correction(self,entered_password):  #this function is to check in our login page whether the password we entered in is correct or not
+        if self.password==entered_password:
+            return True
+        else: 
+            return False
 
 
 class Cart(db.Model):

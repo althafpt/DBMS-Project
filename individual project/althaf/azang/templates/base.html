@@ -23,22 +23,42 @@
                 </button>
                 <div class="collapse navbar-collapse d-flex flex-row justify-content-center" id="navbarNavDropdown">
                     <ul class="navbar text-center" >
-                        <li class="nav-item">
-                            <a class="nav-link" id="cart"href="cart">Cart</a>
-                        </li>
+
                         <li class="nav-item">
                             <a class="nav-link" id="home" href="home">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="contact"href="#">Contact us</a>
                         </li>
+                        {% if current_user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" id="cart"href="cart">Cart</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id=""href="{{url_for('logout')}}">Log out from {{current_user.user_name}}</a>
+                        </li>
+                        {% else %}
                         <li class="nav-item">
                             <a class="nav-link" id="Login"href="login">Login</a>
                         </li>
+                        {% endif %}
+                        
                     </ul>
                 </div>
             </nav>
         </header>   
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category,message in messages %} <!--category is used so that only the message is shown-->
+                <div class="alert alert-{{ category }}">
+                    <button type="button" class="m1-2 mb-1 close" data-dismiss="alert" aria-label="close">
+                        <span aria-hidden="true">&times;</span>    
+                    </button>
+                    {{ message }}
+                </div> <!--category is passed here as alert-danger gives a red shade and danger is given as the category in the routes.py file-->
+            {% endfor %}
+        {% endif %}
+      {% endwith %}
         {% block content %}
         {% endblock %}
         <footer class="text-center text-white" style="background-color: #017064">
@@ -69,5 +89,9 @@
                 </section>
             </div>
         </footer>
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
     </body>
 </html>
