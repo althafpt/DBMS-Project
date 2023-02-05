@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            {% block title %}
+            {% endblock %}
+        </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">   
+        {% block title_changes %}
+        {% endblock %}
+    </head>
+    <body>
+        <header class="top-part">
+            <div class="logo"> 
+                <img src="{{url_for('static',filename='logo.png')}}" height=100px width="237px" class="logo"/>
+            </div>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light ">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse d-flex flex-row justify-content-center" id="navbarNavDropdown">
+                    <ul class="navbar text-center" >
+
+                        <li class="nav-item">
+                            <a class="nav-link" id="home" href="home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="contact"href="#">Contact us</a>
+                        </li>
+                        {% if current_user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" id="cart"href="cart">Cart</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id=""href="{{url_for('logout')}}">Log out from {{current_user.user_name}}</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" id="Login"href="login">Login</a>
+                        </li>
+                        {% endif %}
+                        
+                    </ul>
+                </div>
+            </nav>
+        </header>   
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category,message in messages %} <!--category is used so that only the message is shown-->
+                <div class="alert alert-{{ category }}">
+                    <button type="button" class="m1-2 mb-1 close" data-dismiss="alert" aria-label="close">
+                        <span aria-hidden="true">&times;</span>    
+                    </button>
+                    {{ message }}
+                </div> <!--category is passed here as alert-danger gives a red shade and danger is given as the category in the routes.py file-->
+            {% endfor %}
+        {% endif %}
+      {% endwith %}
+        {% block content %}
+        {% endblock %}
+        <footer class="text-center text-white" style="background-color: #017064">
+           <div class="container">
+                <section class="mt-5">
+                    <div class="row text-center d-flex justify-content-center pt-5 pb-5">
+                        <div class="col-md-2">
+                            <h6 class="font-weight-500">
+                                <a href="#!" class="text-white">About us</a>
+                            </h6>
+                        </div>
+                        <div class="col-md-2">
+                            <h6 class="font-weight-500">
+                                <a href="#!" class="text-white">Categories</a>
+                            </h6>
+                        </div>
+                        <div class="col-md-2">
+                            <h6 class="font-weight-500">
+                                <a href="#!" class="text-white">Reach out</a>
+                            </h6>
+                        </div>
+                        <div class="col-md-2">
+                            <h6 class="font-weight-500">
+                                <a href="#!" class="text-white">Rate us </a>
+                            </h6>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </footer>
+        <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    </body>
+</html>
