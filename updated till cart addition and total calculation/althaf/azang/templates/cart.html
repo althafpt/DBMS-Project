@@ -1,0 +1,139 @@
+{% extends 'base.html' %}
+{% block title %}
+    Login
+{% endblock %}
+{% block content %}
+    <div id="carts">
+        <h2>My Cart</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Price</th>
+              <th>Item</th>
+              
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="cart-items">
+            {% for item in reqprod%}
+            <tr>
+              <td class="price">${{item.product_price}}</td>
+              <td class="item-name">{{item.product_name}}</td>
+
+
+              
+              <td><button class="remove-item">Remove</button></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+          <tfoot>
+            <tr>
+              <td colspan="1"><strong>$Total</strong></td>
+              <td colspan="2"><strong>{{ sum }}</strong></td>
+            </tr>
+          </tfoot>
+        </table>
+        <button id="checkout-button" class="chec"><a href="checkout">Checkout</button></a>
+      </div>
+      <script>
+      var sum = 0;
+      {% for item in reqprod %}
+        sum+={{item.product_price}} 
+        document.querySelector('strong:last-child').innerHTML = "$"+sum;
+      {%endfor%}
+      
+      </script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <style>
+      *{
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box;
+      }
+      body
+      {
+       margin: 0;
+      }
+     .logo
+       {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #fff;
+        }
+        @media screen and (min-width:777px){
+            .nav-link {
+                padding:18px 0;
+                min-width:120px;
+            }
+            .navbar {
+                padding: 0
+            }
+        }
+         .offer
+        {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .top-part{
+            position:sticky ;
+            top: 0; 
+        }
+        li{
+        list-style-type: none;
+        }
+        .nav-link{
+        color: #383838;
+        opacity: 0.5;
+        transition: 0.5s;
+        font-size: 150%;
+        } 
+        .nav-link:hover
+        {
+        opacity: 1;
+        }
+        /*///////////////////*/
+        #carts {
+          width: 500px;
+          margin: 0 auto;
+          text-align: center;
+        }
+        #carts table {
+          width: 100%;
+          border-collapse: collapse;
+        }
+
+        #carts th,
+        #carts td {
+          padding: 10px;
+          border: 1px solid #ccc;
+        }
+
+        #carts button {
+          background-color: #4caf50;
+          color: white;
+          padding: 10px 20px;
+          border: none;
+          cursor: pointer;
+        } 
+
+        #carts .remove-item {
+          background-color: #f44336;
+        } 
+        .chec{
+          color: #fff;
+          background-color: #4caf50;
+          border-radius: 3%;
+        }
+        a{
+          color: #fff;
+        }
+        #checkout-button {
+          display: block;
+          margin: 20px auto 0;
+        } 
+  </style>
+{% endblock %} 
