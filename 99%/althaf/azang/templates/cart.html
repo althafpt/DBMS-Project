@@ -22,7 +22,12 @@
 
 
               
-              <td><button class="remove-item"><a href="{{ url_for('removeitem', cart_id=item.id) }}">Remove</a></button></td>
+              <td>
+                <form action="/remove" method="POST">
+                  <input type="hidden" name="cart_id" value="{{ item.id }}">
+                  <input type="submit" value="Remove">
+                </form>
+              </td>
             </tr>
             {% endfor %}
           </tbody>

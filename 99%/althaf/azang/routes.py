@@ -34,10 +34,12 @@ def cart():
     reqprod = Cart.query.filter_by(user_id=current_user.id)
     return render_template('cart.html',reqprod=reqprod)
 
-@app.route('/remove')
-def removeitem(cart_id):
-    item = Cart.query.get(id=cart_id)
-    db.session.delete(item)
+@app.route('/remove',methods=['POST','GET'])
+def removeitem():
+    index = request.form['cart_id']
+    item = Cart.query.filter_by(id=index)
+    for i in item:
+        db.session.delete(i)
     db.session.commit()
     return redirect(url_for('cart'))
 
@@ -100,9 +102,9 @@ def confirmorder():
                 db.session.commit()
                 flash(f"Successfully Placed Order!",category="success")
                 return redirect(url_for('home'))
-        else :
-            flash(f"Cart is empty, Add some items",category="danger")
-            return redirect(url_for('cart'))
+    elif cartitem==[]:
+        flash(f"Cart is empty, Add some items",category="danger")
+        return redirect(url_for('cart'))
             
 
         
