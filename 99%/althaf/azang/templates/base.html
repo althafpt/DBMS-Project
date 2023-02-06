@@ -27,8 +27,8 @@
                         <li class="nav-item">
                             <a class="nav-link" id="home" href="home">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" id="contact"href="#">Contact us</a>
+                        <li class="nav-item" href="#footer">
+                            <a class="nav-link" id="home" href="#">Contact</a>
                         </li>
                         {% if current_user.is_authenticated %}
                         <li class="nav-item">
@@ -61,30 +61,14 @@
       {% endwith %}
         {% block content %}
         {% endblock %}
-        <footer class="text-center text-white" style="background-color: #017064">
+        <footer class="text-center text-white" style="background-color: #45817b">
            <div class="container">
                 <section class="mt-5">
                     <div class="row text-center d-flex justify-content-center pt-5 pb-5">
                         <div class="col-md-2">
                             <h6 class="font-weight-500">
-                                <a href="#!" class="text-white">About us</a>
+                                <a href="#!" class="text-white">@aashan.pvt.ltd</a>
                             </h6>
-                        </div>
-                        <div class="col-md-2">
-                            <h6 class="font-weight-500">
-                                <a href="#!" class="text-white">Categories</a>
-                            </h6>
-                        </div>
-                        <div class="col-md-2">
-                            <h6 class="font-weight-500">
-                                <a href="#!" class="text-white">Reach out</a>
-                            </h6>
-                        </div>
-                        <div class="col-md-2">
-                            <h6 class="font-weight-500">
-                                <a href="#!" class="text-white">Rate us </a>
-                            </h6>
-                        </div>
                     </div>
                 </section>
             </div>
