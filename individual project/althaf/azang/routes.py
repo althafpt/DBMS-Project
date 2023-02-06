@@ -1,19 +1,51 @@
 from azang import app,db
 from flask import render_template,redirect,url_for,request,flash,get_flashed_messages
-from azang.models import User,Product
-from azang.forms import RegisterForm,LoginForm
+from azang.models import User,Product,Cart,ConfirmedOrders
+from azang.forms import RegisterForm,LoginForm,addtocartForm,confirmorderform
 from flask_login import login_user, logout_user, login_required, current_user
+import random
 @app.route('/')
-@app.route('/home')
+@app.route('/home',methods=['POST','GET'])
 def home():
-    if request.method == "GET":
-        items=Product.query.all()
-        
-        return render_template('home.html',items=items)
+    form = addtocartForm()
+    items=Product.query.all()
+    if request.method == "POST":
+        item_in_cart = request.form.get('item_in_cart')
+        p_item_object = Product.query.filter_by(name=item_in_cart).first()
+        if p_item_object:
+                    itemtocart = Cart( user_id=current_user.id,
+                    product_id = p_item_object.id,
+                    product_name=p_item_object.name,
+                    product_price=p_item_object.price
 
-@app.route('/cart')
+                        ) #we didnt use hash because now the hash gets eliminated by the bcrypt
+                    db.session.add(itemtocart)
+                    db.session.commit()
+        
+            
+
+        
+        
+    return render_template('home.html',items=items,form=form)
+
+
+@app.route('/cart',methods=['GET','POST'])
 def cart():
-    return render_template('cart.html')
+    reqprod = Cart.query.filter_by(user_id=current_user.id)
+    return render_template('cart.html',reqprod=reqprod)
+
+@app.route('/remove',methods=['POST','GET'])
+def removeitem():
+    index = request.form['cart_id']
+    item = Cart.query.filter_by(id=index)
+    for i in item:
+        db.session.delete(i)
+    db.session.commit()
+    return redirect(url_for('cart'))
+
+    
+    
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -52,8 +84,31 @@ def reg():
 def logout():
     logout_user()
     flash(f"Successfully logged out!",category="success")
-    return redirect(url_for("home"))
+    return redirect(url_for('home'))
         
-@app.route('/checkout')  
-def checkout():
-    return render_template('checkout.html')
+@app.route('/checkout',methods=['GET','POST'])  
+def confirmorder():  
+    form=confirmorderform() 
+    cartitem=Cart.query.filter_by(user_id=current_user.id)
+    if cartitem:
+             
+        if form.validate_on_submit():
+                neworder = ConfirmedOrders(id=random.randint(100000,999999), user_id=current_user.id) 
+                db.session.add(neworder)
+                db.session.commit()
+                oldcart = Cart.query.filter_by(user_id=current_user.id)
+                for i in oldcart:
+                    db.session.delete(i)
+                db.session.commit()
+                flash(f"Successfully Placed Order!",category="success")
+                return redirect(url_for('home'))
+    elif cartitem==[]:
+        flash(f"Cart is empty, Add some items",category="danger")
+        return redirect(url_for('cart'))
+            
+
+        
+    return render_template("checkout.html",form=form)
+
+
+    

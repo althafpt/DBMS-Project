@@ -45,10 +45,14 @@ class User(db.Model, UserMixin):
 
 class Cart(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    qty = db.Column(db.Integer)
+    product_id = db.Column(db.Integer, nullable=False)
+    product_name=db.Column(db.String, nullable=False)
+    product_price=db.Column(db.Integer,nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
     user = db.relationship('User', back_populates='cart')
-
+    def __repr__(self):
+        return f'product {self.id}'
+    
 
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -57,9 +61,6 @@ class Product(db.Model):
     url = db.Column(db.String(1024), unique=True)
     users = db.relationship(
         'User', secondary='cart_product', back_populates='products')
-    confirmed_orders = db.relationship(
-        'ConfirmedOrders', back_populates='product')
-
     def __repr__(self):
         return f'Product {self.name}'
 
@@ -67,7 +68,4 @@ class Product(db.Model):
 class ConfirmedOrders(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
-    product_id = db.Column(db.Integer, db.ForeignKey(
-        'product.id'), nullable=False)
     user = db.relationship('User', back_populates='confirmed_orders')
-    product = db.relationship('Product', back_populates='confirmed_orders')

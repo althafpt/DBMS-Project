@@ -22,3 +22,13 @@ class LoginForm(FlaskForm):
     username = StringField(label='username ', validators=[DataRequired()])
     password = PasswordField(label='password ',validators=[DataRequired()])
     submit=SubmitField(label='Sign In')
+
+class addtocartForm(FlaskForm):
+    submit=SubmitField(label='Add To Cart!')
+
+class confirmorderform(FlaskForm):
+    address = StringField(label='Address', validators=[DataRequired()])
+    cardnumber = StringField(label='Card Number', validators=[DataRequired()])
+    cvv = IntegerField(label="CVV",validators=[DataRequired()])
+    submit=SubmitField(label='checkout')
+
