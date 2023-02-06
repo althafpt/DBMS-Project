@@ -31,3 +31,4 @@ class confirmorderform(FlaskForm):
     cardnumber = StringField(label='Card Number', validators=[DataRequired()])
     cvv = IntegerField(label="CVV",validators=[DataRequired()])
     submit=SubmitField(label='checkout')
+

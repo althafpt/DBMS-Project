@@ -22,7 +22,7 @@
 
 
               
-              <td><button class="remove-item">Remove</button></td>
+              <td><button class="remove-item"><a href="{{ url_for('removeitem', cart_id=item.id) }}">Remove</a></button></td>
             </tr>
             {% endfor %}
           </tbody>

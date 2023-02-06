@@ -29,13 +29,21 @@ def home():
     return render_template('home.html',items=items,form=form)
 
 
-@app.route('/cart')
+@app.route('/cart',methods=['GET','POST'])
 def cart():
-    
     reqprod = Cart.query.filter_by(user_id=current_user.id)
-    
-    
     return render_template('cart.html',reqprod=reqprod)
+
+@app.route('/remove')
+def removeitem(cart_id):
+    item = Cart.query.get(id=cart_id)
+    db.session.delete(item)
+    db.session.commit()
+    return redirect(url_for('cart'))
+
+    
+    
+
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -78,13 +86,25 @@ def logout():
         
 @app.route('/checkout',methods=['GET','POST'])  
 def confirmorder():  
-    form=confirmorderform()  
-    if form.validate_on_submit():
-        neworder = ConfirmedOrders(id=random.randint(100000,999999), user_id=current_user.id) 
-        db.session.add(neworder)
-        db.session.commit()
-        flash(f"Successfully Placed Order!",category="success")
-        return redirect(url_for('home'))
+    form=confirmorderform() 
+    cartitem=Cart.query.filter_by(user_id=current_user.id)
+    if cartitem:
+             
+        if form.validate_on_submit():
+                neworder = ConfirmedOrders(id=random.randint(100000,999999), user_id=current_user.id) 
+                db.session.add(neworder)
+                db.session.commit()
+                oldcart = Cart.query.filter_by(user_id=current_user.id)
+                for i in oldcart:
+                    db.session.delete(i)
+                db.session.commit()
+                flash(f"Successfully Placed Order!",category="success")
+                return redirect(url_for('home'))
+        else :
+            flash(f"Cart is empty, Add some items",category="danger")
+            return redirect(url_for('cart'))
+            
+
         
     return render_template("checkout.html",form=form)
 
