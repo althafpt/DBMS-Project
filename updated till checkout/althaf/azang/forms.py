@@ -26,5 +26,8 @@ class LoginForm(FlaskForm):
 class addtocartForm(FlaskForm):
     submit=SubmitField(label='Add To Cart!')
 
-class checkoutform(FlaskForm):
+class confirmorderform(FlaskForm):
+    address = StringField(label='Address', validators=[DataRequired()])
+    cardnumber = StringField(label='Card Number', validators=[DataRequired()])
+    cvv = IntegerField(label="CVV",validators=[DataRequired()])
     submit=SubmitField(label='checkout')

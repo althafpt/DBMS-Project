@@ -1,7 +1,7 @@
 from azang import app,db
 from flask import render_template,redirect,url_for,request,flash,get_flashed_messages
 from azang.models import User,Product,Cart,ConfirmedOrders
-from azang.forms import RegisterForm,LoginForm,addtocartForm,checkoutform
+from azang.forms import RegisterForm,LoginForm,addtocartForm,confirmorderform
 from flask_login import login_user, logout_user, login_required, current_user
 import random
 @app.route('/')
@@ -19,8 +19,8 @@ def home():
                     product_price=p_item_object.price
 
                         ) #we didnt use hash because now the hash gets eliminated by the bcrypt
-        db.session.add(itemtocart)
-        db.session.commit()
+                    db.session.add(itemtocart)
+                    db.session.commit()
         
             
 
@@ -74,18 +74,17 @@ def reg():
 def logout():
     logout_user()
     flash(f"Successfully logged out!",category="success")
-    return redirect(url_for("home"))
+    return redirect(url_for('home'))
         
 @app.route('/checkout',methods=['GET','POST'])  
-def checkout():
-    
-    form=checkoutform()  #instance of the forms
-    if form.validate_on_submit: #checks if user has clicked on submit and this happens when all validators are satisfied
+def confirmorder():  
+    form=confirmorderform()  
+    if form.validate_on_submit():
         neworder = ConfirmedOrders(id=random.randint(100000,999999), user_id=current_user.id) 
         db.session.add(neworder)
         db.session.commit()
         flash(f"Successfully Placed Order!",category="success")
-        return redirect(url_for("home"))
+        return redirect(url_for('home'))
         
     return render_template("checkout.html",form=form)
 

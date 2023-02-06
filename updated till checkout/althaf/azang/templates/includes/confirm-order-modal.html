@@ -3,7 +3,7 @@
         background-color:   white;
     }
 </style>
-<div class="modal fade" id="Modal-confirmorder" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
+<div class="modal fade" id="Modal-confirm" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"> 
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -20,8 +20,9 @@
                         
                         <form method="POST">
                             {{ form.hidden_tag() }}
-
-                            <input id="item_in_cart" name="item_in_cart" type="hidden" value="">    <!--obtained from terminal by --print(purchase_form['submit'])---->  
+                            <h4 class="text-center">Are you sure you wish to Confirm the order?</h4>
+                            <br>
+                            <input id="" name="item_in_cart" type="hidden" value="">    <!--obtained from terminal by --print(purchase_form['submit'])---->  
                             {{ form.submit(class="btn btn-outline-success btn-block")}}
                         </form>
                 </div>
