@@ -151,13 +151,15 @@
         </div>
         <h3 class="dofd-head">DEALS OF THE DAY</h3>
         {% for item in items %}
+        {% include 'includes/item-modal.html' %}
           <!--display items in store-->
           <section class="products">
               <div class="product-container">
                 <div class="product-card">
                     <div class="product-image">
                         <img src="{{item.url}}" alt="image of {{item.name}}" class="product-thumb" height="350px" width="220px">
-                        <button class="addtocartbtn"> Add To Cart </button>
+                        {{form.hidden_tag()}}
+                        <button class="addtocartbtn" data-toggle="modal" data-target="#Modal-purchase--{{item.id}}"> Add To Cart </button>
                     </div>
                     <div class="shoe-specs">
                       <span class="disprice">{{item.price}}</span><span class="orgprice">$99</span>

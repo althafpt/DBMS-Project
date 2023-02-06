@@ -8,86 +8,44 @@
         <table>
           <thead>
             <tr>
-              <th>Item</th>
-              <th>Quantity</th>
               <th>Price</th>
-              <th>Total</th>
+              <th>Item</th>
+              
               <th></th>
             </tr>
           </thead>
           <tbody id="cart-items">
+            {% for item in reqprod%}
             <tr>
-              <td class="item-name">Product 1</td>
+              <td class="price">${{item.product_price}}</td>
+              <td class="item-name">{{item.product_name}}</td>
+
+
+              
               <td>
-                <input type="number" value="1" class="quantity" data-price="10.00">
+                <form action="/remove" method="POST">
+                  <input type="hidden" name="cart_id" value="{{ item.id }}">
+                  <input type="submit" value="Remove">
+                </form>
               </td>
-              <td class="price">$10.00</td>
-              <td class="item-total">$10.00</td>
-              <td><button class="remove-item">Remove</button></td>
             </tr>
-            <tr>
-              <td class="item-name">Product 2</td>
-              <td>
-                <input type="number" value="1" class="quantity" data-price="20.00">
-              </td>
-              <td class="price">$20.00</td>
-              <td class="item-total">$20.00</td>
-              <td><button class="remove-item">Remove</button></td>
-            </tr>
+            {% endfor %}
           </tbody>
           <tfoot>
             <tr>
-              <td colspan="3">Total:</td>
-              <td id="cart-total">$30.00</td>
+              <td colspan="1"><strong>$Total</strong></td>
+              <td colspan="2"><strong>{{ sum }}</strong></td>
             </tr>
           </tfoot>
         </table>
-        <button id="checkout-button" class="chec"><a href="checkout">Checkout</button></a>
+        <button id="checkout-button" class="chec"><a href="{{url_for('confirmorder')}}">Checkout</button></a>
       </div>
-      
-      
-      
       <script>
-      const quantityInputs = document.querySelectorAll('.quantity');
-      const removeButtons = document.querySelectorAll('.remove-item');
-      const checkoutButton = document.querySelector('#checkout-button');
-      const cartTotalElement = document.querySelector('#cart-total');
-      const cartItems = document.querySelector('#cart-items');
-      
-      quantityInputs.forEach(input => {
-        input.addEventListener('change', updateItemTotal);
-      });
-      
-      removeButtons.forEach(button => {
-        button.addEventListener('click', removeItem);
-      });
-      
-      
-      function updateItemTotal(event) {
-        const input = event.currentTarget;
-        const tr = input.parentElement.parentElement;
-        const price = parseFloat(input.getAttribute('data-price'));
-        const quantity = parseInt(input.value);
-        const itemTotal = price * quantity;
-        tr.querySelector('.item-total').textContent = '$' + itemTotal.toFixed(2);
-        updateTotal();
-      }
-      
-      function removeItem(event) {
-        const button = event.currentTarget;
-        button.parentElement.parentElement.remove();
-        updateTotal();
-      }
-      
-      function updateTotal() {
-        let total = 0;
-      
-        cartItems.querySelectorAll('.item-total').forEach(element => {
-          total += parseFloat(element.textContent.substring(1));
-        });
-      
-        cartTotalElement.textContent = '$' + total.toFixed(2);
-      }
+      var sum = 0;
+      {% for item in reqprod %}
+        sum+={{item.product_price}} 
+        document.querySelector('strong:last-child').innerHTML = "$"+sum;
+      {%endfor%}
       
       </script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
